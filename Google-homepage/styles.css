@@ -1,0 +1,182 @@
+/* Global styles
+------------------------- */
+/* html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+body {
+    display: block;
+    overflow: hidden;
+}  */
+
+/* Nav Bar
+------------------------- */
+.nav-bar {
+    height: 50px;
+    width: 100%;
+    box-sizing: border-box;
+    /* margin: 0 auto; */
+}
+.nav-links {
+    padding: 10px;
+    /* position: absolute; */
+    /* top: 20px; */
+    /* right: 20px; */
+    float: right;
+}
+.nav-links a {
+    color: black;
+    text-decoration: none;
+    padding: 5px;
+}
+/* .profile-pic { 
+    background-image: url(dorcas.jpg);
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    width: 32px;
+    height: 32px;
+    background-size: 32px 32px;
+} */
+
+/* Logo Section
+----------------------------- */
+.logo {
+    width: 100%
+   
+}
+.logo img { 
+    width: 550px;
+    height: 196px;
+    margin-top: 50px;
+    /* position: absolute;
+    left: %; */
+    
+} 
+
+.logo .wrapper {
+    width: 550px;
+    margin: 0 auto;
+}
+
+
+/* Search Box
+------------------------------------ */
+.search-bar .wrapper {
+    width: 600px;
+    border: 1px solid #dfe1e5;
+    height: 40px;
+    border-radius: 24px;
+    margin: 0 auto;
+    text-align: center;
+}
+.search-bar .wrapper:hover {
+    border: 3px solid rgb(240, 240, 241);
+}
+.search-bar input {
+    /* background: transparent; */
+    /* border-color: none; */
+    width: 300px;
+    height: 30px;
+    margin: 5px 60px;
+    padding: 0;
+}
+
+
+.search-buttons {
+    width: 300px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* .search-buttons .wrapper {
+    width: 300px;
+    margin: 0 auto;
+} */
+
+.search-buttons button {
+    height: 40px;
+    margin: 20px 10px;
+    padding: 0 10px;
+    border: none;
+    border-radius: 5px;
+    color: rgb(105, 104, 104);
+    background: rgb(244, 244, 247);
+}
+.search-buttons button:hover {
+    border: 1px solid rgb(175, 173, 173);
+    background: rgb(240, 240, 240);
+}
+
+.language-select {
+    width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+.language-select ul {
+    padding: 0;
+}
+.language-select li {
+    display: inline;
+    padding: 5px;
+}
+
+.language-select a {
+    text-decoration: none;
+}
+.language-select a:hover {
+    text-decoration: underline;
+}
+
+/* Footer
+--------------------------------------- */
+.footer p {
+    margin-left: 10px;
+    /* position: fixed;
+    bottom: 50px; */
+    
+}
+.footer {
+    background: rgb(244, 244, 247);
+    width: 100%;
+    right: 0;
+    left: 0;
+    position: fixed;
+    bottom: 0;
+    color: rgb(105, 104, 104);
+    text-decoration: none;
+    border: 1px solid rgb(226, 225, 225);
+}
+.footer ul {
+    padding: 0;
+}
+.footer li {
+    display: inline;
+    margin: 0 10px;
+}
+.footer a {
+    color: rgb(105, 104, 104);
+    text-decoration: none;
+}
+.footer a:hover{
+    text-decoration: underline;
+}
+.left-footer-links {
+    /* position: absolute;
+    bottom: 0;
+    left: 0; */
+
+    float: left;
+}
+.right-footer-links {
+    /* position: absolute;
+    bottom: 0;
+    right: 0; */
+    
+    float: right;
+    margin-right: 20px;
+}
+
