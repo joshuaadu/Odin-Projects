@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <label for="selection">Make your pic</label>
+    <div class="buttons">
+        <button class="selection" id="rock">Rock</button> 
+        <button class="selection" id="paper">Paper</button>
+        <button class="selection" id="scissors">Scissors</button>
+    </div>
+
+
+    <div class="results">
+        <label id="compLabel" for="comPic">Computer pick</label>
+        <button class="selection" id="compPic"></button>
+        <p id="compChoice"></p>
+        <p id="result">---</p>
+        <span class="scores">
+            <label for="player">Your Score is:</label>
+            <span id="player">---</span>
+        </span>
+        <span class="scores">
+            <label for="computer">Computer Score is:</label>
+            <span id="computer">---</span>
+        </span>
+        
+        
+    </div>
+    <script>
+        /* Your game is going to play against the computer, so begin with a function called computerPlay that will randomly return either ‘Rock’, ‘Paper’ or ‘Scissors’. We’ll use this function in the game to make the computer’s play.*/
+        function computerPlay() {
+            let randomNumber = Math.floor(Math.random() * 3);
+            if (randomNumber == 0) {return "Rock";} 
+            else if(randomNumber == 1) {return "Paper";}
+            else return "Scissors";
+        }
+
+        function displayResult(message) {
+            const resultBoard = document.querySelector('#result');
+            resultBoard.textContent = message;
+
+        }
+
+        function displayScore(status) {
+            const playerScoreBoard = document.querySelector('#player');
+            const computerScoreBoard = document.querySelector('#computer');
+            if (status == "win") {
+                playerScore++;
+                playerScoreBoard.textContent = playerScore;
+            }
+            else if(status == "lose") {
+                computerScore++;
+                computerScoreBoard.textContent = computerScore;
+            }
+
+
+        }
+
+        /*Write a function that plays a single round of Rock Paper Scissors. The function should take two parameters - the playerSelection and computerSelection - and then return a string that declares the winner of the round like so: "You Lose! Paper beats Rock" */
+        function playRound(playerSelection, computerSelection) {
+            let message = "";
+            if (playerSelection == "Scissors" && computerSelection == "Paper") {
+                message = "You Win! Scissors beats Paper";
+                displayCompPic(computerSelection);
+                displayResult(message);
+                return "win";
+            }
+            else if (playerSelection == "Paper" && computerSelection == "Rock" ) {
+                message = "You Win! Paper beats Rock";
+                displayCompPic(computerSelection);
+                displayResult(message);
+                return "win";
+            }
+            else if (playerSelection == "Rock" && computerSelection == "Scissors" ) {
+                message = "You Win! Rock beats Scissors";
+                displayCompPic(computerSelection);
+                displayResult(message);
+                return "win";
+            }
+            else if (playerSelection == computerSelection) {
+                message = "Its Draw!";
+                displayCompPic(computerSelection);
+                displayResult(message);
+                return "draw";
+            }
+            else {
+                message = "You Lose! " + computerSelection + " beats " + playerSelection;
+                displayCompPic(computerSelection);
+                displayResult(message);
+                return "lose";
+            }
+        }
+
+        function displayCompPic(computerSelection){
+            const compPic = document.querySelector('#compPic');
+            compPic.textContent = computerSelection;
+        }
+
+    
+        //The status stores the return value of the playRound function: either win/lose/draw
+        //This value is pass to the displayScore function
+        let status = "";
+        //Store player score
+        let playerScore = 0;
+        let computerScore = 0;
+        /*Using target and nodeName properties to register an event 
+        on an element/node in a list of node of a parent node*/
+        const buttons1 = document.querySelector(".buttons");
+        buttons1.addEventListener("click", event => {
+        if (event.target.nodeName == "BUTTON") {
+            const playerSelection = event.target.textContent;
+            const computerSelection = computerPlay();
+            console.log(computerSelection);
+            console.log(playerSelection);
+            status = playRound(playerSelection, computerSelection); 
+            displayScore(status);         
+            
+            }
+            else console.log(event.target.textContent);
+        });
+        
+
+        /* Program logic for taking input for the user
+        // console.log(playRound(playerSelection, computerSelection));
+        function game() {
+            
+            let input = prompt("Enter one of the following: Rock/Paper/Scissors");
+            const playerSelection = input.toLowerCase();
+            alert("Your Selection: " + playerSelection);
+            const computerSelection = computerPlay();
+            alert("Computer Selection: " + computerSelection);
+            alert(playRound(playerSelection, computerSelection));
+        }
+        */
+        
+        // const buttons = document.querySelectorAll(".selection");
+        // buttons.forEach( button => button.addEventListener('click', () => {playRound(button.textContent, computerSelection)}));
+        
+    </script>
+</body>
+</html>
