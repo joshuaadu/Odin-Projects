@@ -1,0 +1,23 @@
+.sketchBoard {
+    width: 600px;
+    height: 600px;
+    border: 5rem solid red;
+    border-radius: 4rem;
+}
+
+button {
+    line-height: 40px;
+    border-radius: 50%;
+}
+
+#create {
+    position: relative;
+    top: 740px;
+    left: 20px;
+}
+
+#clear {
+    position: relative;
+    top: 740px;
+    right: 100px;
+}
