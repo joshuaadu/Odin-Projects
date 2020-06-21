@@ -1,23 +1,44 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.container {
+  width: 650px;
+  height: 650px;
+  text-align: center;
+  margin: auto;
+  position: relative;
+}
+
 .sketchBoard {
-    width: 600px;
-    height: 600px;
-    border: 5rem solid red;
-    border-radius: 4rem;
+  width: inherit;
+  height: inherit;
+  border: 4rem solid red;
+  border-radius: 4rem;
 }
 
 button {
-    line-height: 40px;
-    border-radius: 50%;
+  /* text-align: center; */
+  line-height: 40px;
+  border-radius: 50%;
+  width: 60px;
+  border: none;
 }
 
 #create {
-    position: relative;
-    top: 740px;
-    left: 20px;
+  position: absolute;
+  bottom: 15px;
+  left: 20px;
 }
 
 #clear {
-    position: relative;
-    top: 740px;
-    right: 100px;
+  position: absolute;
+  bottom: 15px;
+  right: 20px;
 }
