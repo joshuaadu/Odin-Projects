@@ -23,6 +23,11 @@ html {
   border-radius: 4rem;
 }
 
+.sketchDivs {
+  width: 10px;
+  height: 10px;
+}
+
 button {
   /* text-align: center; */
   line-height: 40px;
