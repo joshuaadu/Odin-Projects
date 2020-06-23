@@ -21,11 +21,12 @@ html {
   height: inherit;
   border: 4rem solid red;
   border-radius: 4rem;
+  display: grid;
+  /* grid-template-columns: repeat(10, 1fr); */
 }
 
 .sketchDivs {
-  width: 10px;
-  height: 10px;
+  border: 1px solid black;
 }
 
 button {
@@ -34,6 +35,14 @@ button {
   border-radius: 50%;
   width: 60px;
   border: none;
+}
+
+h1 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  margin: 2rem auto;
+  width: 100%;
 }
 
 #create {

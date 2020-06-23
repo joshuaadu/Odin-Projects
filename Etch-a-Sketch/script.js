@@ -1,30 +1,38 @@
 const sketchBoard = document.querySelector(".sketchBoard");
+let hasGrid = false;
 
+//Create Grid
 function createGrid(gridSize) {
-  const div = document.createElement("div");
-  div.className = "sketchDivs";
-  
-  for (i = 0; i < 10; i++) {
-   
-
-    sketchBoard.appendChild(div);
-    console.log(i);
+  if (hasGrid == true) {
+    clearGrid();
   }
-  
+  for (i = 0; i < gridSize * gridSize; i++) {
+    const div = document.createElement("div");
+    div.className = "sketchDivs";
+    sketchBoard.style.cssText = `grid-template-columns: repeat(${gridSize}, 1fr);`
+    sketchBoard.appendChild(div);
+  }
+  hasGrid = true;
 }
 
+//Remove Grid item divs
 function clearGrid() {
-  alert(`Grid Size is now ${gridSize - gridSize}`);
+  while (sketchBoard.firstChild) {
+    sketchBoard.removeChild(sketchBoard.firstChild);
+  }
 }
 
 //Add event listeners to buttons using the target property
 const buttons = document.querySelector(".container");
 buttons.addEventListener("click", (event) => {
   if (event.target.textContent == "Create") {
-    const gridSize = Number(prompt());
+    let gridSize = 0;
+    while (!gridSize) {
+      gridSize = Number(prompt("Enter Grid Size(note: only numbers allowed)"));
+    }
     createGrid(gridSize);
   } else if (event.target.textContent == "Clear") {
-    clearGrid(gridSize);
+    clearGrid();
   } else {
     console.log("default");
   }
