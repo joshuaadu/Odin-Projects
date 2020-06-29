@@ -42,3 +42,9 @@ buttons.addEventListener("click", (event) => {
     clearGrid();
   }
 });
+
+/*Add the following functionalities
+1. Click and hold to add color to the SketchDivs
+2. Add a keypress event to call the create and clear functions
+
+*/
