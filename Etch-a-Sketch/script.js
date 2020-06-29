@@ -9,9 +9,16 @@ function createGrid(gridSize) {
   for (i = 0; i < gridSize * gridSize; i++) {
     const div = document.createElement("div");
     div.className = "sketchDivs";
-    sketchBoard.style.cssText = `grid-template-columns: repeat(${gridSize}, 1fr);`
+    sketchBoard.style.cssText = `grid-template-columns: repeat(${gridSize}, 1fr);`;
     sketchBoard.appendChild(div);
   }
+  //Add color
+  const sketchDivs = Array.from(document.querySelectorAll(".sketchDivs"));
+  sketchDivs.forEach((div) => {
+    div.addEventListener("mouseover", () => {
+      div.style.background = "black";
+    });
+  });
   hasGrid = true;
 }
 
@@ -33,7 +40,5 @@ buttons.addEventListener("click", (event) => {
     createGrid(gridSize);
   } else if (event.target.textContent == "Clear") {
     clearGrid();
-  } else {
-    console.log("default");
   }
 });
