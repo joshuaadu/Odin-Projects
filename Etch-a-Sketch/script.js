@@ -16,7 +16,7 @@ function createGrid(gridSize) {
   const sketchDivs = Array.from(document.querySelectorAll(".sketchDivs"));
   sketchDivs.forEach((div) => {
     div.addEventListener("mouseover", () => {
-      div.style.background = "black";
+      div.style.background = changeColor();
     });
   });
   hasGrid = true;
@@ -42,6 +42,15 @@ buttons.addEventListener("click", (event) => {
     clearGrid();
   }
 });
+
+function changeColor() {
+  const color = document.querySelector("#color");
+  let newColor = color.value;
+  color.addEventListener("input", (e) => {
+    newColor = event.target.value;
+  });
+  return newColor;
+}
 
 /*Add the following functionalities
 1. Click and hold to add color to the SketchDivs
