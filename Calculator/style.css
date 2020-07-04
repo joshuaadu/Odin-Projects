@@ -1,0 +1,24 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    background: #eeecec;
+}
+
+.displayArea {
+    flex: 1 1 150px;
+
+}
+
+.inputArea {
+    flex: 1 1 100px;
+    background: white;
+}
+
+.buttons {
+    flex: 1 1 500px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+
+
+}
