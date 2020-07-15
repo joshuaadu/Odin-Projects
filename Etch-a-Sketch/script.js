@@ -1,4 +1,5 @@
 const sketchBoard = document.querySelector(".sketchBoard");
+const sketchDivs = Array.from(document.querySelectorAll(".sketchDivs"));
 let hasGrid = false;
 
 //Create Grid
@@ -13,13 +14,22 @@ function createGrid(gridSize) {
     sketchBoard.appendChild(div);
   }
   //Add color
-  const sketchDivs = Array.from(document.querySelectorAll(".sketchDivs"));
+  sketchBoard.addEventListener("mousedown", () => {
+    addColor();
+  });
+  // sketchBoard.removeEventListener("mouseup", addColor);
+
+  hasGrid = true;
+  console.log(random(255));
+}
+
+//Add color to each grid
+function addColor() {
   sketchDivs.forEach((div) => {
     div.addEventListener("mouseover", () => {
       div.style.background = changeColor();
     });
   });
-  hasGrid = true;
 }
 
 //Remove Grid item divs
@@ -42,7 +52,7 @@ buttons.addEventListener("click", (event) => {
     clearGrid();
   }
 });
-
+//Change background color
 function changeColor() {
   const color = document.querySelector("#color");
   let newColor = color.value;
@@ -52,6 +62,10 @@ function changeColor() {
   return newColor;
 }
 
+//Generate Random number
+function random(max) {
+  return Math.floor((Math.random() * (max + 1)));
+}
 /*Add the following functionalities
 1. Click and hold to add color to the SketchDivs
 2. Add a keypress event to call the create and clear functions
