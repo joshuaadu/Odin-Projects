@@ -1,22 +1,17 @@
 const buttons = document.querySelector(".buttons");
-//buttons.addEventListener("click", () => {
-//alert("it works");
-//});
+buttons.addEventListener("click", (e)=>{
+    popDisplay(e);
+});
 
-const btnKeys = document.querySelectorAll('.btnKeys');
-btnKeys.forEach((index) => index.addEventListener("click", () => {
-    popDisplay(index);
-}));
-
-const operate = function (operator, operand1, operand2) {
-    switch (operator) {
-        case "+":
+const operate = function(operator, operand1, operand2){
+    switch (operator){
+        case "+": 
             return add(operand1, operand2);
         case "-":
             return substract(operand1, operand2);
         case "*":
             return multiply(operand1, operand2);
-
+            
         case "/":
             return divide(operand1, operand2);
         default:
@@ -24,23 +19,23 @@ const operate = function (operator, operand1, operand2) {
     }
 }
 
-const add = function (a, b) {
+const add = function(a, b){
     return a + b;
 }
 
-const substract = function (a, b) {
+const substract = function(a, b){
     return a - b;
 }
 
-const multiply = function (a, b) {
+const multiply = function(a, b){
     return a * b;
 }
 
-const divide = function (a, b) {
+const divide = function(a, b){
     return a / b;
 }
 
-const popDisplay = function (e) {
+const popDisplay = function(e){
     const display = document.querySelector("#calcExp");
-    display.value += e.textContent;
+    display.value = e.target.textContent;
 }
