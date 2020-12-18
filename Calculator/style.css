@@ -21,14 +21,17 @@ html {
   border-top-left-radius: 10px;
 }
 
-.displayArea {
+.historyArea {
   flex: 1 1 200px;
 }
 
-.inputArea {
-  flex: 1 1 100px;
+.display {
+  flex: 1 1 50px;
   background: white;
   border: 1 solid white;
+  text-align: right;
+  font-weight: bolder;
+  font-size: 2rem;
 }
 
 input {

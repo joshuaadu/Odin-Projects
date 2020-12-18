@@ -24,7 +24,7 @@ Operator functions:
     multiply
     divide: Display a snarky error message if the user tries to divide by 0
 */
-const add = function (a, b) {
+  const add = function (a, b) {
     return a + b;
   };
   
@@ -42,18 +42,25 @@ const add = function (a, b) {
 
 // Operate function
 const operate = function (operator, operand1, operand2) {
+    if (!operand1){
+      return
+    }
     switch (operator) {
       case "+":
+        console.log(operator)
         return add(operand1, operand2);
       case "-":
+        console.log(operator)
         return substract(operand1, operand2);
       case "*":
+        console.log(operator)
         return multiply(operand1, operand2);
   
       case "/":
+        console.log(operator)
         return divide(operand1, operand2);
       default:
-        return 0;
+        return 1;
     }
   };
 
@@ -65,16 +72,28 @@ Update Display function:
 
 */
 function update_Display(element, button) {
-    if (button.textContent == "." && [...element.value].includes(".")) {
-        return
+    if (button.textContent == ".") {
+      if (![...element.textContent].includes(".")) element.textContent += button.textContent;
+      else return;
+    }else if(element.textContent == "0"){
+      element.textContent = button.textContent;
+
+    }else{
+      element.textContent += button.textContent;
     }
-    element.value += button.textContent;
+    
 }
 
 // Clear function: clear all existing data/fresh start
 const clear = function(element) {
   user_input = {};
-  element.value = "";
+  element.textContent = "0";
+}
+
+// Delete last character
+const del = function(element){
+  element.textContent = element.textContent.slice(0, -1);
+  if (element.textContent == "") element.textContent = "0";
 }
 
 // Store first number input when operator pressed
@@ -82,15 +101,24 @@ const press_operator = function(element, operator_btn) {
     // (user_input.current_num) ? 
     // user_input.previous_num = user_input.current_num :
     // user_input.current_num = element.value;
-    user_input.operator = operator_btn.textContent;
-
+    
     if (user_input.current_num) {
       user_input.previous_num = user_input.current_num ;
     }
-    user_input.current_num = element.value; 
-
+    user_input.current_num = parseFloat(element.textContent); 
     console.log(user_input.current_num);
     console.log(user_input.previous_num);
+    console.log(user_input.operator);
+    let result;
+    if (user_input.operator){
+      result = operate(user_input.operator, user_input.previous_num, user_input.current_num);
+    }
+    user_input.operator = operator_btn.textContent; 
+
+
+
+    console.log(result);
+
 
 }
 
@@ -117,21 +145,39 @@ const press_operator = function(element, operator_btn) {
 
 
 // Implementation
-const input = document.querySelector("#calcExp");
+const display = document.querySelector(".display");
 const operatorBtns = document.querySelectorAll(".operator");
 const numberBtns = document.querySelectorAll(".numKeys");
+const clrbtn = document.querySelector("#btnClr");
+const delbtn = document.querySelector("#btnDel");
 
+// btnkeys.addEventListener("click", () => {
+//   console.log("it qworks");
+//   // (e.target.id == "btnClr")?
+//   //  clear(display):
+//   //  (e.target.id == "btnDel")?
+//   //  del():
+//   //  null
+// })
+
+clrbtn.addEventListener("click", ()=> {
+  clear(display);
+})
+
+delbtn.addEventListener("click", ()=> {
+  del(display);
+})
 
 numberBtns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
-    console.log(btn);
-    update_Display(input, btn);
+    console.log(display);
+    update_Display(display, btn);
   })
 });
 
   operatorBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
-      press_operator(input, btn);
+      press_operator(display, btn);
     })
   })
 
