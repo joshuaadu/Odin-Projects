@@ -71,13 +71,13 @@ Update Display function:
     Let users input decimals but typed only once
 
 */
-function update_Display(element, button) {
+function update_Display(element, button, operator_pressed) {
     if (button.textContent == ".") {
       if (![...element.textContent].includes(".")) element.textContent += button.textContent;
       else return;
-    }else if(element.textContent == "0"){
+    }else if(element.textContent == "0" || operator_pressed == true){
+      user_input.previous_num = user_input.current_num;
       element.textContent = button.textContent;
-
     }else{
       element.textContent += button.textContent;
     }
@@ -98,28 +98,30 @@ const del = function(element){
 
 // Store first number input when operator pressed
 const press_operator = function(element, operator_btn) {
-    // (user_input.current_num) ? 
-    // user_input.previous_num = user_input.current_num :
-    // user_input.current_num = element.value;
-    
-    if (user_input.current_num) {
-      user_input.previous_num = user_input.current_num ;
-    }
     user_input.current_num = parseFloat(element.textContent); 
-    console.log(user_input.current_num);
-    console.log(user_input.previous_num);
-    console.log(user_input.operator);
-    let result;
+    console.log("Current input: ", user_input.current_num);
+    console.log("Previous input: ", user_input.previous_num);
+    console.log("Operator pressed: ", user_input.operator);
+
     if (user_input.operator){
-      result = operate(user_input.operator, user_input.previous_num, user_input.current_num);
+      element.textContent = operate(user_input.operator, user_input.previous_num, user_input.current_num);
+    }else{
+      user_input.operator = operator_btn.textContent; 
     }
-    user_input.operator = operator_btn.textContent; 
 
 
 
-    console.log(result);
+   
 
 
+}
+
+const is_pressed = function(elements){
+  let pressed;
+  elements.forEach(btn => {
+     if(btn.getAttribute("class").match("is_pressed")) pressed = true;
+  })
+  return pressed;
 }
 
 // Save operation choose
@@ -171,12 +173,16 @@ delbtn.addEventListener("click", ()=> {
 numberBtns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
     console.log(display);
-    update_Display(display, btn);
+    update_Display(display, btn, is_pressed(operatorBtns));
+    operatorBtns.forEach(btn => {
+      btn.classList.remove("is_pressed");
+    })
   })
 });
 
   operatorBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
+      btn.classList.add("is_pressed");
       press_operator(display, btn);
     })
   })
