@@ -24,24 +24,24 @@ Operator functions:
     multiply
     divide: Display a snarky error message if the user tries to divide by 0
 */
-  const add = function (a, b) {
+  function add(a, b) {
     return a + b;
   };
   
-  const substract = function (a, b) {
+  function substract(a, b) {
     return a - b;
   };
   
-  const multiply = function (a, b) {
+  function multiply(a, b) {
     return a * b;
   };
   
-  const divide = function (a, b) {
+  function divide(a, b) {
     (b == 0)? "Invalid operation": a / b;
   };
 
 // Operate function
-const operate = function (operator, operand1, operand2) {
+function operate(operator, operand1, operand2) {
     if (!operand1){
       return
     }
@@ -85,19 +85,19 @@ function update_Display(element, button, operator_pressed) {
 }
 
 // Clear function: clear all existing data/fresh start
-const clear = function(element) {
+function clear(element) {
   user_input = {};
   element.textContent = "0";
 }
 
 // Delete last character
-const del = function(element){
+function del(element){
   element.textContent = element.textContent.slice(0, -1);
   if (element.textContent == "") element.textContent = "0";
 }
 
 // Store first number input when operator pressed
-const press_operator = function(element, operator_btn) {
+function press_operator(element, operator_btn) {
     user_input.current_num = parseFloat(element.textContent); 
     console.log("Current input: ", user_input.current_num);
     console.log("Previous input: ", user_input.previous_num);
@@ -109,6 +109,10 @@ const press_operator = function(element, operator_btn) {
       user_input.operator = operator_btn.textContent; 
     }
 
+    // Equal to function
+  function equals(element){
+    element.textContent = operate(user_input.operator, user_input.previous_num, user_input.current_num);
+  }
 
 
    
@@ -116,10 +120,11 @@ const press_operator = function(element, operator_btn) {
 
 }
 
-const is_pressed = function(elements){
+function is_pressed(elements){
   let pressed;
   elements.forEach(btn => {
      if(btn.getAttribute("class").match("is_pressed")) pressed = true;
+    //  else pressed = false;
   })
   return pressed;
 }
@@ -152,6 +157,7 @@ const operatorBtns = document.querySelectorAll(".operator");
 const numberBtns = document.querySelectorAll(".numKeys");
 const clrbtn = document.querySelector("#btnClr");
 const delbtn = document.querySelector("#btnDel");
+const eql = document.querySelector("#btnEql");
 
 // btnkeys.addEventListener("click", () => {
 //   console.log("it qworks");
@@ -173,6 +179,7 @@ delbtn.addEventListener("click", ()=> {
 numberBtns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
     console.log(display);
+    console.log(is_pressed(operatorBtns))
     update_Display(display, btn, is_pressed(operatorBtns));
     operatorBtns.forEach(btn => {
       btn.classList.remove("is_pressed");
@@ -185,6 +192,10 @@ numberBtns.forEach((btn) => {
       btn.classList.add("is_pressed");
       press_operator(display, btn);
     })
+  })
+
+  eql.addEventListener("click", () => {
+    equals(display);
   })
 
 
