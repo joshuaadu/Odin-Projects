@@ -41,27 +41,29 @@ Operator functions:
   };
 
 // Operate function
-function operate(operator, operand1, operand2) {
-    if (!operand1){
+function operate() {
+    if (!user_input.previous_num){
       return
     }
-    switch (operator) {
+    switch (user_input.operator) {
       case "+":
-        console.log(operator)
-        return add(operand1, operand2);
+        console.log(user_input.operator)
+        return add(user_input.previous_num, user_input.current_num);
       case "-":
-        console.log(operator)
-        return substract(operand1, operand2);
+        console.log(user_input.operator)
+        return substract(user_input.previous_num, user_input.current_num);
       case "*":
-        console.log(operator)
-        return multiply(operand1, operand2);
+        console.log(user_input.operator)
+        return multiply(user_input.previous_num, user_input.current_num);
   
       case "/":
-        console.log(operator)
-        return divide(operand1, operand2);
+        console.log(user_input.operator)
+        return divide(user_input.previous_num, user_input.current_num);
       default:
         return 1;
     }
+    user_input.operator = "";
+    // user_input.previous_num = "";
   };
 
 /*
@@ -76,11 +78,14 @@ function update_Display(element, button, operator_pressed) {
       if (![...element.textContent].includes(".")) element.textContent += button.textContent;
       else return;
     }else if(element.textContent == "0" || operator_pressed == true){
+      (user_input.result)? 
+      user_input.previous_num = user_input.result : 
       user_input.previous_num = user_input.current_num;
       element.textContent = button.textContent;
     }else{
       element.textContent += button.textContent;
     }
+    user_input.current_num = parseFloat(element.textContent);
     
 }
 
@@ -97,28 +102,24 @@ function del(element){
 }
 
 // Store first number input when operator pressed
-function press_operator(element, operator_btn) {
-    user_input.current_num = parseFloat(element.textContent); 
+function press_operator(element, operator_btn) { 
+    if (!user_input.previous_num && !user_input.operator) user_input.operator = operator_btn.textContent;
+    else {
+      user_input.result = operate();
+      element.textContent = user_input.result;
+      user_input.operator = operator_btn.textContent;
+    }
+    
     console.log("Current input: ", user_input.current_num);
     console.log("Previous input: ", user_input.previous_num);
     console.log("Operator pressed: ", user_input.operator);
-
-    if (user_input.operator){
-      element.textContent = operate(user_input.operator, user_input.previous_num, user_input.current_num);
-    }else{
-      user_input.operator = operator_btn.textContent; 
-    }
-
-    // Equal to function
-  function equals(element){
-    element.textContent = operate(user_input.operator, user_input.previous_num, user_input.current_num);
   }
 
-
-   
-
-
-}
+  // Equal to function
+  function equals(element){
+    element.textContent = operate();
+  }
+  
 
 function is_pressed(elements){
   let pressed;
