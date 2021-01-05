@@ -37,7 +37,7 @@ Operator functions:
   };
   
   function divide(a, b) {
-    (b == 0)? "Invalid operation": a / b;
+    return (b == 0)? "Invalid operation": a / b;
   };
 
 // Operate function
@@ -117,7 +117,7 @@ function press_operator(element, operator_btn) {
 
   // Equal to function
   function equals(element){
-    element.textContent = operate();
+    user_input.result = operate();
   }
   
 
@@ -188,16 +188,16 @@ numberBtns.forEach((btn) => {
   })
 });
 
-  operatorBtns.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      btn.classList.add("is_pressed");
-      press_operator(display, btn);
-    })
+operatorBtns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    btn.classList.add("is_pressed");
+    press_operator(display, btn);
   })
+})
 
-  eql.addEventListener("click", () => {
-    equals(display);
-  })
+eql.addEventListener("click", () => {
+  equals(display);
+})
 
 
 
