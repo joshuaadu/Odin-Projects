@@ -32,6 +32,7 @@ function addBookToLibrary(title, author, pages) {
 
 /* Display books */
 function displayBooks(library) {
+    if (library)
 	let recentlyAddedBook = myLibrary.length - 1;
 	let p = document.createElement("p");
 	p.textContent = myLibrary[recentlyAddedBook].info();
